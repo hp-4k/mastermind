@@ -1,6 +1,12 @@
 require "spec_helper"
 
 RSpec.describe Code do
+  context "self.random" do
+    it "should generate a new valid code" do
+      expect(Code.random).to be_valid
+    end
+  end
+
   context "#initialize" do
     it "has to be initialized with 4 elements" do
       expect { Code.new(1, 2, 3, 4) }.not_to raise_error
@@ -10,7 +16,7 @@ RSpec.describe Code do
     end
   end
 
-  context "valid?" do
+  context "#valid?" do
     it "returns true if all elements are digits between 1 and 6" do
       expect(Code.new(1, 2, 3, 4)).to be_valid
       expect(Code.new(1, 1, 1, 1)).to be_valid
@@ -26,9 +32,15 @@ RSpec.describe Code do
     end
   end
 
-  context "self.random" do
-    it "should generate a new valid code" do
-      expect(Code.random).to be_valid
+  context "matches?(other_code)" do
+    let(:code) { Code.new(1, 2, 3, 4)}
+    it "returns true if both codes are identical" do
+      expect(code.matches?(Code.new(1, 2, 3, 4))).to be true
+    end
+    it "returns false if codes are different" do
+      expect(code.matches?(Code.new(2, 3, 4, 5))).to be false
+      expect(code.matches?(Code.new(2, 1, 3, 4))).to be false
+      expect(code.matches?(Code.new(6, 6, 6, 6))).to be false
     end
   end
 end

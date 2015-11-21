@@ -30,10 +30,10 @@ RSpec.describe Player do
     end
   end
 
-  context "#set_secret_code" do
+  context "#supply_secret_code" do
     it "can produce a secret code" do
-      expect(human_player).to respond_to(:set_secret_code)
-      expect(ai_player).to respond_to(:set_secret_code)
+      expect(human_player).to respond_to(:supply_secret_code)
+      expect(ai_player).to respond_to(:supply_secret_code)
     end
   end
 end
