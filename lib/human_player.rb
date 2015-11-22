@@ -4,7 +4,7 @@ module HumanPlayer
   end
 
   def self.submit_guess(board)
-    prompt("guess")
+    board.submit_code(prompt("guess"))
   end
 
   private
@@ -20,6 +20,7 @@ module HumanPlayer
         end
         puts "Invalid code, try again" unless input_code.valid?
       end
+      input_code
     end
 
     def self.temporary_code

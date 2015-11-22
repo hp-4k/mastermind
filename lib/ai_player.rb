@@ -5,6 +5,6 @@ module AIPlayer
 
   def self.submit_guess(board)
     # pending implementation
-    Code.random
+    board.submit_code(Code.random)
   end
 end

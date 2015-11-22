@@ -36,6 +36,9 @@ class Board
   end
 
   def print_board
+    puts '-' * 9
+    puts '? ? ? ? |'
+    puts '-' * 43
     submitted_codes.each_with_index { |code, index| print_board_line(code, lines_of_feedback[index]) }
   end
 
