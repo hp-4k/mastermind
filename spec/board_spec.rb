@@ -35,10 +35,28 @@ RSpec.describe Board do
     end
   end
 
+  context "#get_feedback" do
+    it "gets feedback for the secret" do
+      secret = double("secret")
+      guess = double("guess")
+      board.set_secret_code(secret)
+      board.submit_code(guess)
+      expect(guess).to receive(:generate_feedback).with(secret)
+      board.get_feedback
+    end
+  end
+
   context "#set_secret_code" do
     it "sets a new secret code" do
       board.set_secret_code("new code")
       expect(board.secret_code).to eq "new code"
+    end
+  end
+
+  context "#attempts_left" do
+    it "returns the number of attempts left" do
+      3.times { board.submit_code("a") }
+      expect(board.attempts_left).to eq 9
     end
   end
 

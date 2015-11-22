@@ -14,7 +14,9 @@ class Game
       reset_game
       board.set_secret_code(codemaker.supply_secret_code)
       until winner
+        print_attempts_left
         codebreaker.submit_guess(board)
+        provide_feedback
       end
       break unless play_again?
       swap_players
@@ -36,6 +38,15 @@ class Game
     def reset_game
       board.clear
       print_introduction
+    end
+
+    def print_attempts_left
+      puts "The codebraker has #{board.attempts_left} attempts left"
+    end
+
+    def provide_feedback
+      feedback = board.get_feedback
+      puts "Score: #{feedback.black} black pins and #{feedback.whire} white pins"
     end
 
     def end_game

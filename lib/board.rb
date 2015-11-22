@@ -15,6 +15,14 @@ class Board
     @submitted_codes << code
   end
 
+  def get_feedback
+    @submitted_codes.last.generate_feedback(secret_code)
+  end
+
+  def attempts_left
+    total_attempts - submitted_codes.size
+  end
+
   def attempts_left?
     submitted_codes.size < total_attempts
   end

@@ -43,4 +43,45 @@ RSpec.describe Code do
       expect(code.matches?(Code.new(6, 6, 6, 6))).to be false
     end
   end
+
+  context "generate_feedback(other)" do
+    it "returns correct feedback for a guess with white and black pins" do
+      feedback = Code.new(1, 2, 3, 4).generate_feedback(Code.new(4, 5, 3, 6))
+      expect(feedback[:black]).to eq 1
+      expect(feedback[:white]).to eq 1
+    end
+    it "returns correct feedback for a guess with black pins only" do
+      feedback = Code.new(1, 2, 3, 4).generate_feedback(Code.new(5, 2, 3, 6))
+      expect(feedback[:black]).to eq 2
+      expect(feedback[:white]).to eq 0
+    end
+    it "returns correct feedback for a guess with white pins only" do
+      feedback = Code.new(1, 2, 3, 4).generate_feedback(Code.new(6, 4, 1, 2))
+      expect(feedback[:black]).to eq 0
+      expect(feedback[:white]).to eq 3
+    end
+    it "returns correct feedback for a guess without any pins" do
+      feedback = Code.new(1, 2, 3, 4).generate_feedback(Code.new(6, 6, 5, 5))
+      expect(feedback[:black]).to eq 0
+      expect(feedback[:white]).to eq 0
+    end
+    it "returns correct feedback with repeating pins in secret" do
+      feedback = Code.new(1, 2, 2, 1).generate_feedback(Code.new(4, 1, 2, 2))
+      expect(feedback[:black]).to eq 1
+      expect(feedback[:white]).to eq 2
+    end
+    it "returns correct feedback with repeating pins in guess" do
+      feedback = Code.new(1, 2, 3, 4).generate_feedback(Code.new(1, 1, 1, 1))
+      expect(feedback[:black]).to eq 1
+      expect(feedback[:white]).to eq 0
+    end
+    it "returns correct feedback with repeating pins in secret and guess" do
+      feedback = Code.new(2, 2, 6, 6).generate_feedback(Code.new(2, 6, 2, 6))
+      expect(feedback[:black]).to eq 2
+      expect(feedback[:white]).to eq 2
+    end
+    it "is commutative" do
+      expect(Code.new(2, 2, 6, 6).generate_feedback(Code.new(2, 6, 2, 6))).to eq Code.new(2, 6, 2, 6).generate_feedback(Code.new(2, 2, 6, 6))
+    end
+  end
 end
