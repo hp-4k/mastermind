@@ -44,7 +44,7 @@ class Game
     end
 
     def print_board
-      board.print
+      board.print_board
     end
 
     def print_attempts_left
