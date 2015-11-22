@@ -4,7 +4,7 @@ module HumanPlayer
   end
 
   def self.submit_guess(board)
-    promt("guess")
+    prompt("guess")
   end
 
   private
