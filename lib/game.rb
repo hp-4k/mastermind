@@ -9,8 +9,8 @@ class Game
   end
 
   def play
-    begin_game
     while true
+      begin_game
       reset_game
       board.set_secret_code(codemaker.supply_secret_code)
       until winner
@@ -19,7 +19,7 @@ class Game
       break unless play_again?
       swap_players
     end
-    finish_game
+    end_game
   end
 
   def winner
@@ -30,7 +30,7 @@ class Game
   private
 
     def begin_game
-      puts "INTRODUCTION WILL BE PRINTED HERE"
+      puts "Welcome to Mastermind. #{codemaker.name} is the codemaker, #{codebreaker.name} is the codebreaker."
     end
 
     def reset_game
@@ -56,7 +56,8 @@ class Game
     end
 
     def play_again?
-      puts "/nDo you want to swap sides and play again? (Y)"
+      puts board.code_guessed? ? "Codebreaker #{winner.name} wins!" : "Codemaker #{winner.name} wins!"
+      puts "\nDo you want to swap sides and play again? (Y)"
       gets.chomp.upcase == 'Y'
     end
 
