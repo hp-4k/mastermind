@@ -1,5 +1,3 @@
-require "ai_player"
-require "human_player"
 require "forwardable"
 
 class Player
