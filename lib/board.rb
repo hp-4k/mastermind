@@ -26,7 +26,7 @@ class Board
   end
 
   def code_guessed?
-    submitted_codes.last.matches?(secret_code)
+    submitted_codes.empty? ? false : submitted_codes.last.matches?(secret_code)
   end
 
   def clear

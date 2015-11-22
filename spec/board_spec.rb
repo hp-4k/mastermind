@@ -78,6 +78,9 @@ RSpec.describe Board do
       board.submit_code(not_matching_code)
       expect(board.code_guessed?).to be false
     end
+    it "returns false if board is empty" do
+      expect(board.code_guessed?).to be false
+    end
   end
 
   context "#clear" do
