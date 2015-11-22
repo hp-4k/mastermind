@@ -28,6 +28,10 @@ class Code
     feedback
   end
 
+  def to_s
+    pins.join(' ')
+  end
+
   private
 
     def count_black_pins(other_pins)

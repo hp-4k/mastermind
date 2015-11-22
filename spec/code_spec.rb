@@ -44,7 +44,7 @@ RSpec.describe Code do
     end
   end
 
-  context "generate_feedback(other)" do
+  context "#generate_feedback(other)" do
     it "returns correct feedback for a guess with white and black pins" do
       feedback = Code.new(1, 2, 3, 4).generate_feedback(Code.new(4, 5, 3, 6))
       expect(feedback[:black]).to eq 1
@@ -82,6 +82,13 @@ RSpec.describe Code do
     end
     it "is commutative" do
       expect(Code.new(2, 2, 6, 6).generate_feedback(Code.new(2, 6, 2, 6))).to eq Code.new(2, 6, 2, 6).generate_feedback(Code.new(2, 2, 6, 6))
+    end
+  end
+
+  context "#to_s" do
+    it "returns a textual representation of the code" do
+      expect(Code.new(1, 2, 3, 4).to_s).to eq "1 2 3 4"
+      expect(Code.new(6, 6, 6, 6).to_s).to eq "6 6 6 6"
     end
   end
 end
