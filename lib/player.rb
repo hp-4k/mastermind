@@ -2,7 +2,7 @@ require "forwardable"
 
 class Player
   extend Forwardable
-  def_delegators :@input, :supply_secret_code
+  def_delegators :@input, :supply_secret_code, :submit_guess
 
   attr_reader :name
 

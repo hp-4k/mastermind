@@ -36,4 +36,11 @@ RSpec.describe Player do
       expect(ai_player).to respond_to(:supply_secret_code)
     end
   end
+
+  context "#submit_guess" do
+    it "can submit a guess" do
+      expect(human_player).to respond_to(:submit_guess)
+      expect(ai_player).to respond_to(:submit_guess)
+    end
+  end
 end
