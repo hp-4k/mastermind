@@ -14,9 +14,7 @@ class Game
       reset_game
       board.set_secret_code(codemaker.supply_secret_code)
       until winner
-        print_attempts_left
-        codebreaker.submit_guess(board)
-        provide_feedback
+        guess_by_codebreaker
       end
       break unless play_again?
       swap_players
@@ -38,6 +36,17 @@ class Game
     def reset_game
       board.clear
       print_introduction
+    end
+
+    def guess_by_codebreaker
+      print_board
+      print_attempts_left
+      codebreaker.submit_guess(board)
+      provide_feedback
+    end
+
+    def print_board
+      board.print
     end
 
     def print_attempts_left
