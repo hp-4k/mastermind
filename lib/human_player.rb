@@ -14,7 +14,7 @@ module HumanPlayer
       until input_code.valid?
         begin
           puts "Enter the new #{input_type} seperated by spaces:"
-          input_code = Code.new(gets.chomp.split)
+          input_code = Code.new(*convert_input_to_code(gets.chomp))
         rescue
           input_code = temporary_code
         end
@@ -24,5 +24,9 @@ module HumanPlayer
 
     def self.temporary_code
       Code.new(-1, -1, -1, -1)
+    end
+
+    def self.convert_input_to_code(input)
+      input.split.map {|e| e.to_i}
     end
 end
