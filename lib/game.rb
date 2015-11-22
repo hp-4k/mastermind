@@ -35,14 +35,12 @@ class Game
 
     def reset_game
       board.clear
-      print_introduction
     end
 
     def guess_by_codebreaker
       print_board
       print_attempts_left
       codebreaker.submit_guess(board)
-      provide_feedback
     end
 
     def print_board
@@ -51,11 +49,6 @@ class Game
 
     def print_attempts_left
       puts "The codebraker has #{board.attempts_left} attempts left"
-    end
-
-    def provide_feedback
-      feedback = board.get_feedback
-      puts "Score: #{feedback.black} black pins and #{feedback.whire} white pins"
     end
 
     def end_game
